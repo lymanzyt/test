@@ -32,7 +32,7 @@ jobs:
       - id: get
         name: Get repositories information
         run: |
-          echo "https://api.github.com/repos/${SCRIPT_REPO}/actions/runs/${GITHUB_RUN_ID}"
+          echo "$(curl https://api.github.com/repos/${SCRIPT_REPO}/actions/runs/${GITHUB_RUN_ID})"
           TIME="$(curl https://api.github.com/repos/${SCRIPT_REPO}/actions/runs/${GITHUB_RUN_ID} | jq -r .created_at)"
           TAG="ci-$(date -d "${TIME}" -u +'%Y%m%d-%H%M%S-%Z')"
 
